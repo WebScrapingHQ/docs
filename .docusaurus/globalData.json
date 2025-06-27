@@ -1,0 +1,78 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/documentation/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/documentation/",
+          "mainDocId": "index",
+          "docs": [
+            {
+              "id": "ai-extraction",
+              "path": "/documentation/ai-extraction",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "api-reference",
+              "path": "/documentation/api-reference",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "authentication",
+              "path": "/documentation/authentication",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "basic-scraping",
+              "path": "/documentation/basic-scraping",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "extraction-rules",
+              "path": "/documentation/extraction-rules",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "index",
+              "path": "/documentation/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "javascript-instructions",
+              "path": "/documentation/javascript-instructions",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "quick-start",
+              "path": "/documentation/quick-start",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "screenshots",
+              "path": "/documentation/screenshots",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "serp-scraping",
+              "path": "/documentation/serp-scraping",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/documentation/",
+                "label": "🏠 Welcome"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "serp-scraping",
+  "title": "SERP Scraping",
+  "description": "Scrape search engine results pages with advanced optimization",
+  "source": "@site/docs/serp-scraping.md",
+  "sourceDirName": ".",
+  "slug": "/serp-scraping",
+  "permalink": "/documentation/serp-scraping",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "title": "SERP Scraping",
+    "description": "Scrape search engine results pages with advanced optimization",
+    "sidebar_position": 6
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Extraction Rules",
+    "permalink": "/documentation/extraction-rules"
+  },
+  "next": {
+    "title": "Screenshot Capture",
+    "permalink": "/documentation/screenshots"
+  }
+}

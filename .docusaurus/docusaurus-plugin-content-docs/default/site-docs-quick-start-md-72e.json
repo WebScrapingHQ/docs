@@ -1,0 +1,28 @@
+{
+  "id": "quick-start",
+  "title": "Quick Start Guide",
+  "description": "Get up and running with WebscrapingHQ API in under 5 minutes",
+  "source": "@site/docs/quick-start.md",
+  "sourceDirName": ".",
+  "slug": "/quick-start",
+  "permalink": "/documentation/quick-start",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Quick Start Guide",
+    "description": "Get up and running with WebscrapingHQ API in under 5 minutes",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Authentication",
+    "permalink": "/documentation/authentication"
+  },
+  "next": {
+    "title": "Basic Scraping",
+    "permalink": "/documentation/basic-scraping"
+  }
+}

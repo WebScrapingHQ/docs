@@ -1,0 +1,28 @@
+{
+  "id": "extraction-rules",
+  "title": "Extraction Rules",
+  "description": "Extract specific data using CSS selectors for precise control",
+  "source": "@site/docs/extraction-rules.md",
+  "sourceDirName": ".",
+  "slug": "/extraction-rules",
+  "permalink": "/documentation/extraction-rules",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "title": "Extraction Rules",
+    "description": "Extract specific data using CSS selectors for precise control",
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "AI-Powered Data Extraction",
+    "permalink": "/documentation/ai-extraction"
+  },
+  "next": {
+    "title": "SERP Scraping",
+    "permalink": "/documentation/serp-scraping"
+  }
+}

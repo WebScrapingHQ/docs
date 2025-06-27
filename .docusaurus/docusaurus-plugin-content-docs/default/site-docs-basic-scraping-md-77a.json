@@ -1,0 +1,28 @@
+{
+  "id": "basic-scraping",
+  "title": "Basic Scraping",
+  "description": "Learn the fundamentals of web scraping with WebscrapingHQ API",
+  "source": "@site/docs/basic-scraping.md",
+  "sourceDirName": ".",
+  "slug": "/basic-scraping",
+  "permalink": "/documentation/basic-scraping",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Basic Scraping",
+    "description": "Learn the fundamentals of web scraping with WebscrapingHQ API",
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Quick Start Guide",
+    "permalink": "/documentation/quick-start"
+  },
+  "next": {
+    "title": "JavaScript Instructions",
+    "permalink": "/documentation/javascript-instructions"
+  }
+}
