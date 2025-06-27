@@ -15,10 +15,10 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: "https://app.webscrapinghq.com",
+  url: "https://docs.webscrapinghq.com",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For integration with Next.js, we'll serve this under /docs
-  baseUrl: "/documentation/",
+  baseUrl: "/",
 
   // GitHub pages deployment config - update with your actual repo
   organizationName: "webscrapinghq", // Usually your GitHub org/user name.
