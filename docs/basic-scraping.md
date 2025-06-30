@@ -46,7 +46,7 @@ Every scraping request follows this basic structure:
 | `screenshot` | boolean | `false` | Capture a screenshot of the page |
 | `waitFor` | number | `0` | Wait time in milliseconds before capturing content |
 | `deviceType` | string | `"desktop"` | Device type: `"desktop"` or `"mobile"` |
-| `country_code` | string | - | Country code for geolocation (e.g., "US", "UK") |
+| `countryCode` | string | - | Country code for geolocation (e.g., "US", "UK") |
 
 ## Content Types
 
@@ -107,11 +107,11 @@ Understanding the response structure helps you extract the data you need:
 {
   "creditsLeft": 995,
   "cost": 5,
-  "initial-status-code": 200,
-  "resolved-url": "https://example.com/final-url",
+  "initialStatusCode": 200,
+  "resolvedUrl": "https://example.com/final-url",
   "type": "html",
   "body": "<!DOCTYPE html>...",
-  "features_used": {
+  "featuresUsed": {
     "javascript": true,
     "screenshot": false,
     "geolocation": null
@@ -122,14 +122,14 @@ Understanding the response structure helps you extract the data you need:
 ### Key Response Fields
 
 #### Status Information
-- `initial-status-code`: HTTP status code from the target website
-- `resolved-url`: Final URL after any redirects
+- `initialStatusCode`: HTTP status code from the target website
+- `resolvedUrl`: Final URL after any redirects
 - `type`: Content type (usually "html")
 
 #### Usage Information
 - `creditsLeft`: Remaining credits in your account
 - `cost`: Credits consumed by this request
-- `features_used`: Object showing which features were used
+- `featuresUsed`: Object showing which features were used
 
 #### Content
 - `body`: The HTML content of the scraped page
@@ -206,7 +206,7 @@ Access content from specific locations:
 ```json
 {
   "url": "https://geo-restricted.com",
-  "country_code": "US",
+  "countryCode": "US",
   "renderJs": true
 }
 ```
@@ -282,13 +282,13 @@ def scrape_and_parse(url):
     return {
         'title': title,
         'paragraphs': paragraphs,
-        'credits_left': data['creditsLeft']
+        'creditsLeft': data['creditsLeft']
     }
 
 # Usage
 result = scrape_and_parse('https://example.com/article')
 print(f"Title: {result['title']}")
-print(f"Credits left: {result['credits_left']}")
+print(f"Credits left: {result['creditsLeft']}")
 ```
 
 ### JavaScript Example with Cheerio
@@ -360,12 +360,12 @@ response = requests.post(url, headers=headers, json=payload)
 
 if response.status_code == 200:
     data = response.json()
-    if data.get('initial-status-code') == 200:
+    if data.get('initialStatusCode') == 200:
         # Process successful scrape
         html_content = data['body']
     else:
         # Handle target site error
-        print(f"Target site returned: {data['initial-status-code']}")
+        print(f"Target site returned: {data['initialStatusCode']}")
 else:
     # Handle API error
     print(f"API error: {response.status_code}")
@@ -378,7 +378,7 @@ Keep track of your credit consumption:
 def log_usage(response_data):
     print(f"Credits used: {response_data['cost']}")
     print(f"Credits remaining: {response_data['creditsLeft']}")
-    print(f"Features used: {response_data['features_used']}")
+    print(f"Features used: {response_data['featuresUsed']}")
 ```
 
 ## Common Issues and Solutions
@@ -410,7 +410,7 @@ def log_usage(response_data):
   "url": "https://example.com",
   "renderJs": true,
   "deviceType": "mobile",
-  "country_code": "US"
+  "countryCode": "US"
 }
 ```
 

@@ -69,7 +69,7 @@ Additional context to help the AI understand the data location or format.
   "renderJs": true,
   "aiScraping": [
     {
-      "name": "product_name",
+      "name": "productName",
       "value": "The main product title or name"
     },
     {
@@ -77,7 +77,7 @@ Additional context to help the AI understand the data location or format.
       "value": "Current selling price in any currency"
     },
     {
-      "name": "original_price",
+      "name": "originalPrice",
       "value": "Original price before discount, if available"
     },
     {
@@ -89,7 +89,7 @@ Additional context to help the AI understand the data location or format.
       "value": "Customer rating or review score"
     },
     {
-      "name": "review_count",
+      "name": "reviewCount",
       "value": "Number of customer reviews"
     },
     {
@@ -128,7 +128,7 @@ Additional context to help the AI understand the data location or format.
       "value": "Article author name"
     },
     {
-      "name": "publish_date",
+      "name": "publishDate",
       "value": "When the article was published"
     },
     {
@@ -144,7 +144,7 @@ Additional context to help the AI understand the data location or format.
       "value": "Article tags or categories as a list"
     },
     {
-      "name": "read_time",
+      "name": "readTime",
       "value": "Estimated reading time"
     }
   ]
@@ -159,7 +159,7 @@ Additional context to help the AI understand the data location or format.
   "renderJs": true,
   "aiScraping": [
     {
-      "name": "job_title",
+      "name": "jobTitle",
       "value": "Job position title"
     },
     {
@@ -171,11 +171,11 @@ Additional context to help the AI understand the data location or format.
       "value": "Job location - city, state, country"
     },
     {
-      "name": "salary_range",
+      "name": "salaryRange",
       "value": "Salary or compensation range"
     },
     {
-      "name": "employment_type",
+      "name": "employmentType",
       "value": "Full-time, part-time, contract, etc."
     },
     {
@@ -191,7 +191,7 @@ Additional context to help the AI understand the data location or format.
       "value": "Full job description"
     },
     {
-      "name": "posted_date",
+      "name": "postedDate",
       "value": "When the job was posted"
     }
   ]

@@ -57,12 +57,12 @@ curl -X POST https://your-domain.com/api/v1/scrape \
 ```json
 {
   "extractRules": {
-    "product_name": "h1.product-title, h1.item-title",  // Multiple selectors
+    "productName": "h1.product-title, h1.item-title",  // Multiple selectors
     "rating": "[data-rating]",                          // Attribute selector
     "reviews": "span:contains('reviews')",              // Text content selector
     "availability": ".stock-status span:first-child",   // Nested selection
     "brand": "meta[property='product:brand']",          // Meta tag content
-    "image_url": ".product-image img[src]"              // Image source
+    "imageUrl": ".product-image img[src]"              // Image source
   }
 }
 ```
@@ -77,15 +77,15 @@ curl -X POST https://your-domain.com/api/v1/scrape \
   "renderJs": true,
   "extractRules": {
     "name": "h1.product-name, .product-title h1",
-    "current_price": ".price-now, .current-price, .sale-price",
-    "original_price": ".price-was, .original-price, .list-price",
+    "currentPrice": ".price-now, .current-price, .sale-price",
+    "originalPrice": ".price-was, .original-price, .list-price",
     "discount": ".discount-percent, .savings-percent",
     "availability": ".stock-status, .availability-text",
     "rating": ".rating-value, [data-rating]",
-    "review_count": ".review-count, .reviews-total",
+    "reviewCount": ".review-count, .reviews-total",
     "brand": ".brand-name, .manufacturer",
     "model": ".model-number, .product-code",
-    "main_image": ".product-image img",
+    "mainImage": ".product-image img",
     "description": ".product-description, .item-details",
     "features": ".product-features li",
     "specifications": ".specs-table td:nth-child(2)",
@@ -103,12 +103,12 @@ curl -X POST https://your-domain.com/api/v1/scrape \
     "headline": "h1.article-title, .headline",
     "subtitle": ".article-subtitle, .deck",
     "author": ".author-name, .byline a",
-    "publish_date": "time[datetime], .publish-date",
+    "publishDate": "time[datetime], .publish-date",
     "content": ".article-body, .content p",
     "category": ".category-link, .section-name",
     "tags": ".tag-list a, .article-tags li",
-    "read_time": ".read-time, .estimated-time",
-    "image_caption": ".featured-image figcaption"
+    "readTime": ".read-time, .estimated-time",
+    "imageCaption": ".featured-image figcaption"
   }
 }
 ```
@@ -119,34 +119,34 @@ curl -X POST https://your-domain.com/api/v1/scrape \
 {
   "url": "https://jobs.example.com/listing/123",
   "extractRules": {
-    "job_title": "h1.job-title, .position-title",
+    "jobTitle": "h1.job-title, .position-title",
     "company": ".company-name, .employer",
     "location": ".job-location, .location-text",
     "salary": ".salary-range, .compensation",
-    "job_type": ".employment-type, .job-category",
-    "posted_date": ".posted-date, .listing-date",
+    "jobType": ".employment-type, .job-category",
+    "postedDate": ".posted-date, .listing-date",
     "description": ".job-description, .role-summary",
     "requirements": ".requirements li, .qualifications li",
     "benefits": ".benefits li, .perks li",
-    "contact_email": ".contact-info [href^='mailto:']",
-    "application_url": ".apply-button[href], .application-link"
+    "contactEmail": ".contact-info [href^='mailto:']",
+    "applicationUrl": ".apply-button[href], .application-link"
   }
 }
 ```
 
 ## Response Format
 
-Extracted data is returned in the `extracted_data` field:
+Extracted data is returned in the `extractedData` field:
 
 ```json
 {
   "cost": 1,
   "creditsLeft": 999,
-  "initial-status-code": 200,
-  "resolved-url": "https://store.example.com/product/123",
+  "initialStatusCode": 200,
+  "resolvedUrl": "https://store.example.com/product/123",
   "type": "html",
   "body": "<!DOCTYPE html>...",
-  "extracted_data": {
+  "extractedData": {
     "title": "Premium Wireless Headphones",
     "price": "$199.99",
     "description": "High-quality audio with noise cancellation",
@@ -165,8 +165,8 @@ Extracted data is returned in the `extracted_data` field:
   "renderJs": true,
   "waitFor": 3000,
   "extractRules": {
-    "dynamic_price": ".price-loaded",
-    "stock_status": ".stock-dynamic"
+    "dynamicPrice": ".price-loaded",
+    "stockStatus": ".stock-dynamic"
   }
 }
 ```
@@ -188,8 +188,8 @@ Extracted data is returned in the `extracted_data` field:
     }
   ],
   "extractRules": {
-    "detailed_specs": ".expanded-details li",
-    "technical_data": ".tech-specs td"
+    "detailedSpecs": ".expanded-details li",
+    "technicalData": ".tech-specs td"
   }
 }
 ```
@@ -202,8 +202,8 @@ Extracted data is returned in the `extracted_data` field:
   "renderJs": true,
   "screenshot": true,
   "extractRules": {
-    "visible_text": ".main-content",
-    "sidebar_info": ".sidebar-widget"
+    "visibleText": ".main-content",
+    "sidebarInfo": ".sidebar-widget"
   }
 }
 ```
@@ -217,8 +217,8 @@ When a selector matches multiple elements, the API returns the text from the fir
 ```json
 {
   "extractRules": {
-    "first_paragraph": "p",           // Gets first <p> element
-    "all_headings": "h2, h3, h4"      // Gets first matching heading
+    "firstParagraph": "p",           // Gets first <p> element
+    "allHeadings": "h2, h3, h4"      // Gets first matching heading
   }
 }
 ```
@@ -230,9 +230,9 @@ Extract attribute values instead of text content:
 ```json
 {
   "extractRules": {
-    "image_url": "img.product-image",     // Gets src attribute
-    "link_url": "a.product-link",         // Gets href attribute
-    "data_id": "[data-product-id]"        // Gets data-product-id attribute
+    "imageUrl": "img.product-image",     // Gets src attribute
+    "linkUrl": "a.product-link",         // Gets href attribute
+    "dataId": "[data-product-id]"        // Gets data-product-id attribute
   }
 }
 ```
@@ -267,7 +267,7 @@ Use multiple selectors for better reliability:
   "renderJs": true,
   "waitFor": 3000,
   "extractRules": {
-    "loaded_content": ".content-loaded"
+    "loadedContent": ".content-loaded"
   }
 }
 ```
@@ -296,11 +296,11 @@ When extraction rules can't find elements:
 
 ```json
 {
-  "extracted_data": {
+  "extractedData": {
     "title": "Found Product Title",
     "price": "",              // Empty string when not found
     "description": "Found Description",
-    "missing_field": ""       // Empty string for missing elements
+    "missingField": ""       // Empty string for missing elements
   }
 }
 ```
@@ -361,7 +361,7 @@ response = requests.post(
 )
 
 data = response.json()
-extracted = data['extracted_data']
+extracted = data['extractedData']
 print(f"Title: {extracted['title']}")
 print(f"Price: {extracted['price']}")
 ```
@@ -385,7 +385,7 @@ const response = await fetch('https://your-domain.com/api/v1/scrape', {
 });
 
 const data = await response.json();
-console.log('Extracted:', data.extracted_data);
+console.log('Extracted:', data.extractedData);
 ```
 
 ### PHP
@@ -408,7 +408,7 @@ $response = file_get_contents('https://your-domain.com/api/v1/scrape', false, st
 ]));
 
 $data = json_decode($response, true);
-echo $data['extracted_data']['title'];
+echo $data['extractedData']['title'];
 ```
 
 ## Next Steps
