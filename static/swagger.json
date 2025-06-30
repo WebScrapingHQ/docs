@@ -1,0 +1,523 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Scraping API",
+        "description": "API for web scraping with various options including JavaScript rendering, screenshots, and AI-assisted data extraction."
+    },
+    "servers": [
+        {
+            "url": "/api/v1",
+            "description": "API v1"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "X-API-KEY",
+                "description": "API key for authentication"
+            }
+        },
+        "schemas": {
+            "ScrapingInput": {
+                "type": "object",
+                "required": [
+                    "url"
+                ],
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "URL to scrape"
+                    },
+                    "renderJs": {
+                        "type": "boolean",
+                        "description": "Enable JavaScript rendering",
+                        "default": false
+                    },
+                    "serp": {
+                        "type": "boolean",
+                        "description": "Enable search engine results page (SERP) handling",
+                        "default": false
+                    },
+                    "screenshot": {
+                        "type": "boolean",
+                        "description": "Capture screenshot of the page",
+                        "default": false
+                    },
+                    "waitFor": {
+                        "type": "number",
+                        "description": "Wait time in milliseconds before capturing the page"
+                    },
+                    "providerPreference": {
+                        "type": "string",
+                        "description": "Specify preferred scraping provider"
+                    },
+                    "javascriptInstruction": {
+                        "type": "array",
+                        "description": "JavaScript instructions to execute before capturing the page.",
+                        "items": {
+                            "type": "object",
+                            "description": "JavaScript instruction",
+                            "oneOf": [
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "action": {
+                                            "type": "string",
+                                            "enum": [
+                                                "clickElement",
+                                                "doubleClickElement",
+                                                "executeJavaScript",
+                                                "navigateToUrl",
+                                                "hideElement",
+                                                "hoverOverElement",
+                                                "executeBrowserScript",
+                                                "pressKeyboardKey",
+                                                "reloadPage",
+                                                "scrollDown",
+                                                "scrollToElement",
+                                                "performSearch",
+                                                "selectOption",
+                                                "setLocation",
+                                                "typeText",
+                                                "waitForNavigation",
+                                                "waitForRequest",
+                                                "waitForResponse",
+                                                "waitForSelector",
+                                                "wait"
+                                            ],
+                                            "description": "Type of action to perform."
+                                        },
+                                        "selector": {
+                                            "type": "object",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "css",
+                                                        "xpath"
+                                                    ],
+                                                    "description": "Type of selector (CSS or XPath)"
+                                                },
+                                                "value": {
+                                                    "type": "string",
+                                                    "description": "The selector value"
+                                                },
+                                                "state": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "visible",
+                                                        "hidden",
+                                                        "attached"
+                                                    ],
+                                                    "description": "Element state to match"
+                                                }
+                                            },
+                                            "required": [
+                                                "type",
+                                                "value"
+                                            ]
+                                        },
+                                        "url": {
+                                            "type": "string",
+                                            "description": "URL for navigation actions"
+                                        },
+                                        "source": {
+                                            "type": "string",
+                                            "description": "JavaScript code to execute in browser context"
+                                        },
+                                        "delay": {
+                                            "type": "number",
+                                            "description": "Time to wait in milliseconds"
+                                        },
+                                        "timeout": {
+                                            "type": "number",
+                                            "description": "Maximum wait time in seconds"
+                                        },
+                                        "waitForNavigationTimeout": {
+                                            "type": "number",
+                                            "description": "Maximum navigation time in seconds"
+                                        },
+                                        "key": {
+                                            "type": "string",
+                                            "description": "Key to press for keyPress action"
+                                        },
+                                        "waitUntil": {
+                                            "type": "string",
+                                            "enum": [
+                                                "load",
+                                                "domcontentloaded",
+                                                "networkidle0"
+                                            ],
+                                            "description": "When to consider navigation succeeded"
+                                        },
+                                        "top": {
+                                            "type": "number",
+                                            "description": "Y-coordinate for scrolling"
+                                        },
+                                        "left": {
+                                            "type": "number",
+                                            "description": "X-coordinate for scrolling"
+                                        },
+                                        "text": {
+                                            "type": "string",
+                                            "description": "Text to type or input"
+                                        },
+                                        "onError": {
+                                            "type": "string",
+                                            "enum": [
+                                                "continue",
+                                                "return"
+                                            ],
+                                            "description": "Error handling behavior"
+                                        }
+                                    },
+                                    "required": [
+                                        "action"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "extractRules": {
+                        "type": "object",
+                        "description": "CSS selectors for data extraction",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "country_code": {
+                        "type": "string",
+                        "description": "Country code for geolocation"
+                    },
+                    "deviceType": {
+                        "type": "string",
+                        "enum": [
+                            "desktop",
+                            "mobile"
+                        ],
+                        "default": "desktop",
+                        "description": "Device type to emulate"
+                    },
+                    "headers": {
+                        "type": "array",
+                        "description": "Custom HTTP headers to send with the request",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Header name"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "description": "Header value"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "value"
+                            ]
+                        }
+                    },
+                    "cookies": {
+                        "type": "array",
+                        "description": "Cookies to send with the request",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Cookie name"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "description": "Cookie value"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "value"
+                            ]
+                        }
+                    },
+                    "aiScraping": {
+                        "type": "array",
+                        "description": "AI-assisted data extraction fields",
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "name"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Field name to extract"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "description": "Context to help AI extract the field (optional)"
+                                },
+                                "context": {
+                                    "type": "string",
+                                    "description": "Alternative field for context to help AI extract the field (optional)"
+                                }
+                            }
+                        }
+                    },
+                    "requestMethod": {
+                        "type": "string",
+                        "enum": [
+                            "GET",
+                            "POST",
+                            "PUT",
+                            "DELETE",
+                            "OPTIONS",
+                            "TRACE",
+                            "PATCH",
+                            "HEAD"
+                        ],
+                        "default": "POST",
+                        "description": "HTTP method to use for the request"
+                    }
+                }
+            },
+            "ScrapingResponse": {
+                "type": "object",
+                "properties": {
+                    "creditsLeft": {
+                        "type": "number",
+                        "description": "Credits left after this request"
+                    },
+                    "cost": {
+                        "type": "number",
+                        "description": "Number of credits used for this request"
+                    },
+                    "aiResponse": {
+                        "type": "object",
+                        "description": "Response from AI extraction if aiScraping was used",
+                        "additionalProperties": true
+                    },
+                    "initialStatusCode": {
+                        "type": "number",
+                        "description": "HTTP status code from the target website"
+                    },
+                    "resolvedUrl": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Resolved URL after redirects"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of content returned",
+                        "enum": [
+                            "html"
+                        ]
+                    },
+                    "body": {
+                        "type": "string",
+                        "description": "HTML content of the scraped page"
+                    },
+                    "screenshot": {
+                        "type": "string",
+                        "description": "Base64-encoded screenshot (if requested)"
+                    },
+                    "headers": {
+                        "type": "object",
+                        "description": "HTTP headers from the response",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "featuresUsed": {
+                        "type": "object",
+                        "description": "Features used in this request",
+                        "properties": {
+                            "javascript": {
+                                "type": "boolean",
+                                "description": "JavaScript rendering was used"
+                            },
+                            "screenshot": {
+                                "type": "boolean",
+                                "description": "Screenshot was captured"
+                            },
+                            "geolocation": {
+                                "type": "string",
+                                "description": "Geolocation was used"
+                            },
+                            "javascriptInstruction": {
+                                "type": "boolean",
+                                "description": "JavaScript instructions were executed"
+                            },
+                            "extractRules": {
+                                "type": "boolean",
+                                "description": "Extraction rules were used"
+                            },
+                            "serp": {
+                                "type": "boolean",
+                                "description": "SERP handling was used"
+                            }
+                        }
+                    }
+                }
+            },
+            "ErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "type": "string",
+                        "description": "Error message"
+                    },
+                    "code": {
+                        "type": "string",
+                        "description": "Error code"
+                    },
+                    "details": {
+                        "type": "object",
+                        "description": "Additional error details"
+                    }
+                }
+            }
+        }
+    },
+    "paths": {
+        "/scrape": {
+            "post": {
+                "summary": "Scrape a webpage",
+                "description": "Scrape a webpage with various options including JavaScript rendering, screenshots, and AI-assisted data extraction.",
+                "operationId": "scrape",
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScrapingInput"
+                            },
+                            "examples": {
+                                "basicScraping": {
+                                    "summary": "Basic Scraping",
+                                    "value": {
+                                        "url": "https://www.webscrapinghq.com/"
+                                    }
+                                },
+                                "javascriptRendering": {
+                                    "summary": "JavaScript Rendering",
+                                    "value": {
+                                        "url": "https://www.webscrapinghq.com/",
+                                        "renderJs": true
+                                    }
+                                },
+                                "withScreenshot": {
+                                    "summary": "With Screenshot",
+                                    "value": {
+                                        "url": "https://www.webscrapinghq.com/",
+                                        "renderJs": true,
+                                        "screenshot": true
+                                    }
+                                },
+                                "aiAssisted": {
+                                    "summary": "AI-Assisted Extraction",
+                                    "value": {
+                                        "url": "https://www.webscrapinghq.com/",
+                                        "renderJs": true,
+                                        "aiScraping": [
+                                            {
+                                                "name": "title",
+                                                "value": "The main title of the page"
+                                            },
+                                            {
+                                                "name": "price",
+                                                "value": "Product price if available"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "javascriptInstructions": {
+                                    "summary": "JavaScript Instructions",
+                                    "value": {
+                                        "url": "https://www.webscrapinghq.com/",
+                                        "renderJs": true,
+                                        "javascriptInstruction": [
+                                            {
+                                                "action": "waitForSelector",
+                                                "selector": {
+                                                    "type": "css",
+                                                    "value": "#login-form"
+                                                }
+                                            },
+                                            {
+                                                "action": "clickElement",
+                                                "selector": {
+                                                    "type": "css",
+                                                    "value": "#login-button"
+                                                }
+                                            },
+                                            {
+                                                "action": "wait",
+                                                "timeout": 2
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful scraping",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ScrapingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid or missing API key",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error or scraping failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        {
+            "ApiKeyAuth": []
+        }
+    ]
+}

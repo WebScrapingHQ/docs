@@ -82,12 +82,12 @@ curl -X POST https://your-domain.com/api/v1/scrape \
   "url": "https://www.google.com/search?q=pizza+near+me&location=New+York",
   "serp": true,
   "renderJs": true,
-  "country_code": "US",
+  "countryCode": "US",
   "extractRules": {
-    "business_names": ".VkpGBb",
+    "businessNames": ".VkpGBb",
     "ratings": ".MW4etd",
     "addresses": ".rllt__details div:nth-child(2)",
-    "phone_numbers": ".rllt__details div:nth-child(3)"
+    "phoneNumbers": ".rllt__details div:nth-child(3)"
   }
 }
 ```
@@ -100,7 +100,7 @@ curl -X POST https://your-domain.com/api/v1/scrape \
   "serp": true,
   "renderJs": true,
   "extractRules": {
-    "product_titles": ".rgHvZc",
+    "productTitles": ".rgHvZc",
     "prices": ".T14wmb",
     "stores": ".aULzUe",
     "ratings": ".Fam1ne"
@@ -118,7 +118,7 @@ curl -X POST https://your-domain.com/api/v1/scrape \
   "extractRules": {
     "headlines": ".n0jPhd",
     "sources": ".NUnG9d",
-    "publish_dates": ".OSrXXb",
+    "publishDates": ".OSrXXb",
     "snippets": ".GI74Re"
   }
 }
@@ -152,7 +152,7 @@ Extract structured data from search results using AI:
   "renderJs": true,
   "aiScraping": [
     {
-      "name": "restaurant_names",
+      "name": "restaurantNames",
       "value": "Names of restaurants from search results as a list"
     },
     {
@@ -180,9 +180,9 @@ Extract structured data from search results using AI:
   "serp": true,
   "renderJs": true,
   "extractRules": {
-    "organic_titles": "h3.LC20lb",
-    "organic_urls": ".yuRUbf a",
-    "organic_descriptions": ".VwiC3b",
+    "organicTitles": "h3.LC20lb",
+    "organicUrls": ".yuRUbf a",
+    "organicDescriptions": ".VwiC3b",
     "positions": ".g"
   }
 }
@@ -196,15 +196,15 @@ Extract structured data from search results using AI:
   "renderJs": true,
   "aiScraping": [
     {
-      "name": "competitor_ads",
+      "name": "competitorAds",
       "value": "Paid advertisement titles and descriptions as a list"
     },
     {
-      "name": "organic_listings",
+      "name": "organicListings",
       "value": "Organic search result titles for the competitor"
     },
     {
-      "name": "featured_snippets",
+      "name": "featuredSnippets",
       "value": "Any featured snippet content related to the competitor"
     }
   ]
@@ -219,15 +219,15 @@ Extract structured data from search results using AI:
   "renderJs": true,
   "aiScraping": [
     {
-      "name": "trending_topics",
+      "name": "trendingTopics",
       "value": "Trending topics and keywords from search results"
     },
     {
-      "name": "industry_reports",
+      "name": "industryReports",
       "value": "Links to industry reports and research papers"
     },
     {
-      "name": "news_headlines",
+      "name": "newsHeadlines",
       "value": "Recent news headlines about industry trends"
     }
   ]
@@ -242,10 +242,10 @@ Extract structured data from search results using AI:
   "url": "https://www.google.com/search?q=coffee+shops",
   "serp": true,
   "renderJs": true,
-  "country_code": "US",
+  "countryCode": "US",
   "extractRules": {
-    "local_results": ".VkpGBb",
-    "map_listings": ".rllt__link"
+    "localResults": ".VkpGBb",
+    "mapListings": ".rllt__link"
   }
 }
 ```
@@ -269,11 +269,11 @@ curl -X POST https://your-domain.com/api/v1/scrape \
 {
   "cost": 6,
   "creditsLeft": 994,
-  "initial-status-code": 200,
-  "resolved-url": "https://www.google.com/search?q=web+scraping+tools",
+  "initialStatusCode": 200,
+  "resolvedUrl": "https://www.google.com/search?q=web+scraping+tools",
   "type": "html",
   "body": "<!DOCTYPE html>...",
-  "features_used": {
+  "featuresUsed": {
     "javascript": true,
     "serp": true,
     "geolocation": "US"
@@ -401,13 +401,13 @@ for (const query of searchQueries) {
 ```json
 {
   "extractRules": {
-    "organic_titles": "h3.LC20lb",
-    "organic_urls": ".yuRUbf a",
-    "organic_descriptions": ".VwiC3b",
-    "ad_titles": ".uEierd",
-    "featured_snippet": ".kp-blk",
-    "people_also_ask": ".related-question-pair",
-    "related_searches": ".k8XOCe"
+    "organicTitles": "h3.LC20lb",
+    "organicUrls": ".yuRUbf a",
+    "organicDescriptions": ".VwiC3b",
+    "adTitles": ".uEierd",
+    "featuredSnippet": ".kp-blk",
+    "peopleAlsoAsk": ".related-question-pair",
+    "relatedSearches": ".k8XOCe"
   }
 }
 ```
@@ -416,9 +416,9 @@ for (const query of searchQueries) {
 ```json
 {
   "extractRules": {
-    "organic_titles": ".b_lineclamp1",
-    "organic_urls": ".b_attribution cite",
-    "organic_descriptions": ".b_caption p",
+    "organicTitles": ".b_lineclamp1",
+    "organicUrls": ".b_attribution cite",
+    "organicDescriptions": ".b_caption p",
     "ads": ".b_ad .b_adlabel"
   }
 }
@@ -496,7 +496,7 @@ const scrapeSERP = async (query) => {
       serp: true,
       renderJs: true,
       aiScraping: [
-        {name: 'top_results', value: 'Top 5 search result titles as a list'}
+        {name: 'topResults', value: 'Top 5 search result titles as a list'}
       ]
     })
   });

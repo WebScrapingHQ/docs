@@ -130,12 +130,12 @@ curl -X POST https://app.webscrapinghq.com/api/v1/scrape \
 {
   "creditsLeft": 995,
   "cost": 5,
-  "initial-status-code": 200,
-  "resolved-url": "https://example.com",
+  "initialStatusCode": 200,
+  "resolvedUrl": "https://example.com",
   "type": "html",
   "body": "<html>...</html>",
   "screenshot": "base64-encoded-image",
-  "features_used": {
+  "featuresUsed": {
     "javascript": true,
     "screenshot": true
   }
@@ -154,8 +154,8 @@ When you use the `aiScraping` parameter, the response will include an additional
     "title": "Example Page Title",
     "description": "Extracted page description"
   },
-  "initial-status-code": 200,
-  "resolved-url": "https://example.com",
+  "initialStatusCode": 200,
+  "resolvedUrl": "https://example.com",
   "type": "html",
   "body": "<html>...</html>"
 }

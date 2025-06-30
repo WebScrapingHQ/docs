@@ -37,11 +37,11 @@ curl -X POST https://app.webscrapinghq.com/api/v1/scrape \
 {
   "creditsLeft": 999,
   "cost": 1,
-  "initial-status-code": 200,
-  "resolved-url": "https://httpbin.org/get",
+  "initialStatusCode": 200,
+  "resolvedUrl": "https://httpbin.org/get",
   "type": "html",
   "body": "<!DOCTYPE html>\n<html>...",
-  "features_used": {
+  "featuresUsed": {
     "javascript": false,
     "screenshot": false
   }
@@ -103,7 +103,7 @@ def scrape_url(url):
 # Test it out
 result = scrape_url('https://httpbin.org/get')
 print(f"Credits left: {result['creditsLeft']}")
-print(f"Status code: {result['initial-status-code']}")
+print(f"Status code: {result['initialStatusCode']}")
 ```
 
 </TabItem>
@@ -128,7 +128,7 @@ async function scrapeUrl(url) {
 // Test it out
 scrapeUrl("https://httpbin.org/get").then((result) => {
   console.log(`Credits left: ${result.creditsLeft}`);
-  console.log(`Status code: ${result["initial-status-code"]}`);
+  console.log(`Status code: ${result.initialStatusCode}`);
 });
 ```
 
@@ -160,7 +160,7 @@ function scrapeUrl($url, $apiKey) {
 // Test it out
 $result = scrapeUrl('https://httpbin.org/get', $apiKey);
 echo "Credits left: " . $result['creditsLeft'] . "\n";
-echo "Status code: " . $result['initial-status-code'] . "\n";
+echo "Status code: " . $result['initialStatusCode'] . "\n";
 ?>
 ```
 
@@ -246,7 +246,7 @@ Extract specific data using AI:
       "context": "Find the article author name"
     },
     {
-      "name": "publish_date",
+      "name": "publishDate",
       "context": "When was this article published"
     }
   ]
@@ -260,7 +260,7 @@ Response with extracted data:
   "aiResponse": {
     "headline": "Breaking: Major Tech Announcement Today",
     "author": "John Smith",
-    "publish_date": "2024-01-15"
+    "publishDate": "2024-01-15"
   },
   "body": "<!DOCTYPE html>...",
   "creditsLeft": 990,
@@ -278,7 +278,7 @@ Response with extracted data:
   "renderJs": true,
   "aiScraping": [
     {
-      "name": "product_name",
+      "name": "productName",
       "context": "Extract the product title or name"
     },
     {
@@ -334,7 +334,7 @@ Response with extracted data:
   "screenshot": true,
   "aiScraping": [
     {
-      "name": "post_content",
+      "name": "postContent",
       "context": "Extract the main post text"
     },
     {
@@ -357,11 +357,11 @@ Every successful response includes these key fields:
 | --------------------- | --------------------------------- | --------------------------- |
 | `creditsLeft`         | Remaining credits in your account | `995`                       |
 | `cost`                | Credits consumed by this request  | `5`                         |
-| `initial-status-code` | HTTP status from target site      | `200`                       |
-| `resolved-url`        | Final URL after redirects         | `https://example.com/final` |
+| `initialStatusCode`   | HTTP status from target site      | `200`                       |
+| `resolvedUrl`         | Final URL after redirects         | `https://example.com/final` |
 | `type`                | Content type returned             | `"html"`                    |
 | `body`                | HTML content of the page          | `"<!DOCTYPE html>..."`      |
-| `features_used`       | Features enabled for this request | `{"javascript": true}`      |
+| `featuresUsed`        | Features enabled for this request | `{"javascript": true}`      |
 | `screenshot`          | Base64 image (if requested)       | `"iVBORw0K..."`             |
 | `aiResponse`          | AI-extracted data (if requested)  | `{"title": "..."}`          |
 

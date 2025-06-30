@@ -45,12 +45,12 @@ Screenshots are returned as base64-encoded data URLs:
 {
   "cost": 5,
   "creditsLeft": 995,
-  "initial-status-code": 200,
-  "resolved-url": "https://example.com",
+  "initialStatusCode": 200,
+  "resolvedUrl": "https://example.com",
   "type": "html",
   "body": "<!DOCTYPE html>...",
   "screenshot": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=",
-  "features_used": {
+  "featuresUsed": {
     "javascript": true,
     "screenshot": true
   }
@@ -173,11 +173,11 @@ Create visual documentation of web applications:
   "screenshot": true,
   "aiScraping": [
     {
-      "name": "page_title",
+      "name": "pageTitle",
       "value": "Main page title or heading"
     },
     {
-      "name": "visible_sections",
+      "name": "visibleSections",
       "value": "Names of main sections visible on the page as a list"
     }
   ]
@@ -283,15 +283,15 @@ response = requests.post(
 data = response.json()
 if 'screenshot' in data:
     # Extract base64 data
-    screenshot_data = data['screenshot']
-    base64_data = screenshot_data.split(',')[1]  # Remove data:image/jpeg;base64,
+    screenshotData = data['screenshot']
+    base64Data = screenshotData.split(',')[1]  # Remove data:image/jpeg;base64,
     
     # Decode and save
-    image_data = base64.b64decode(base64_data)
+    imageData = base64.b64decode(base64Data)
     filename = f"screenshot_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg"
     
     with open(filename, 'wb') as f:
-        f.write(image_data)
+        f.write(imageData)
     
     print(f"Screenshot saved as {filename}")
 ```
@@ -350,14 +350,14 @@ $data = json_decode($response, true);
 
 if (isset($data['screenshot'])) {
     // Extract base64 data
-    $screenshot_data = $data['screenshot'];
-    $base64_data = explode(',', $screenshot_data)[1];
+    $screenshotData = $data['screenshot'];
+    $base64Data = explode(',', $screenshotData)[1];
     
     // Decode and save
-    $image_data = base64_decode($base64_data);
+    $imageData = base64_decode($base64Data);
     $filename = 'screenshot_' . date('Ymd_His') . '.jpg';
     
-    file_put_contents($filename, $image_data);
+    file_put_contents($filename, $imageData);
     echo "Screenshot saved as $filename";
 }
 ```
@@ -426,27 +426,27 @@ Screenshots are automatically optimized, but you can reduce processing time by:
 ### Before/After Comparisons
 ```python
 # Capture before state
-before_response = scrape_with_screenshot("https://site.com")
+beforeResponse = scrape_with_screenshot("https://site.com")
 
-# Make changes via API or admin panel
+# Make changes to the site
 make_changes()
 
 # Capture after state
-after_response = scrape_with_screenshot("https://site.com")
+afterResponse = scrape_with_screenshot("https://site.com")
 
-# Compare screenshots
-compare_images(before_response['screenshot'], after_response['screenshot'])
+# Compare the two images
+compare_images(beforeResponse['screenshot'], afterResponse['screenshot'])
 ```
 
 ### Automated Visual Testing
 ```javascript
-const test_urls = [
+const testUrls = [
   'https://app.com/page1',
   'https://app.com/page2',
   'https://app.com/page3'
 ];
 
-for (const url of test_urls) {
+for (const url of testUrls) {
   const screenshot = await captureScreenshot(url);
   await validateScreenshot(screenshot, url);
 }
@@ -487,13 +487,12 @@ for (const url of test_urls) {
 ### Troubleshooting
 ```python
 def validate_screenshot(response):
+    """Validate screenshot quality and content"""
     if 'screenshot' not in response:
-        print("No screenshot captured - check if screenshot=true")
         return False
     
-    screenshot_data = response['screenshot']
-    if len(screenshot_data) < 1000:  # Very small data suggests blank image
-        print("Screenshot appears blank - increase waitFor time")
+    screenshotData = response['screenshot']
+    if len(screenshotData) < 1000:  # Very small data suggests blank image
         return False
     
     return True
@@ -516,16 +515,17 @@ def validate_screenshot(response):
 
 ### Automated Testing Pipeline
 ```python
-def visual_regression_test(url, baseline_screenshot):
-    current = requests.post('https://your-domain.com/api/v1/scrape', {
-        'url': url,
-        'renderJs': True,
-        'screenshot': True
-    })
+def visual_regression_test(url, baselineScreenshot):
+    """Compare current screenshot with baseline"""
+    current = scrape_with_screenshot(url)
     
+    if not validate_screenshot(current):
+        return False
+    
+    # Compare screenshots (implement your comparison logic)
     similarity = compare_screenshots(
-        baseline_screenshot, 
-        current.json()['screenshot']
+        baselineScreenshot,
+        current['screenshot']
     )
     
     if similarity < 0.95:  # 95% similarity threshold
